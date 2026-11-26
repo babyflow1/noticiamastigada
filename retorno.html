@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Autorização · Notícia Mastigada</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="topo"><div class="dentro">
+  <a class="marca" href="./">Notícia <span>Mastigada</span></a>
+</div></header>
+<main>
+  <h1 id="titulo">Autorização recebida</h1>
+  <p class="chamada" id="msg">Pode fechar esta aba e voltar para a Redação Notícia Mastigada.</p>
+</main>
+<script>
+  // Página de retorno do login do TikTok. O código fica só no endereço desta aba,
+  // para o programa da redação ler. Nada é enviado para outro lugar.
+  var p = new URLSearchParams(location.search);
+  if (p.get('error')) {
+    document.getElementById('titulo').textContent = 'A autorização não foi concluída';
+    document.getElementById('msg').textContent = 'Motivo: ' + (p.get('error_description') || p.get('error')) + '. Pode fechar esta aba e tentar de novo.';
+  } else if (!p.get('code')) {
+    document.getElementById('titulo').textContent = 'Página de autorização';
+    document.getElementById('msg').textContent = 'Esta página só é usada quando o programa da redação pede autorização a uma rede social.';
+  }
+</script>
+</body>
+</html>
